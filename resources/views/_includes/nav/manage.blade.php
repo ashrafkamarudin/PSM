@@ -1,52 +1,59 @@
-<div class="side-menu" id="admin-side-menu">
-  <aside class="menu m-t-30 m-l-10">
-    <p class="menu-label">
-      General
-    </p>
-    <ul class="menu-list">
-      <li><a href="{{route('manage.dashboard')}}" class="{{Nav::isRoute('manage.dashboard')}}">Dashboard</a></li>
-    </ul>
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
 
-    <p class="menu-label">
-      Content
-    </p>
-    <ul class="menu-list">
-      <li><a href="{{route('posts.index')}}" class="{{Nav::isResource('posts', 2)}}">Blog Posts</a></li>
-      {{-- <li>
-        <a class="has-submenu {{Nav::hasSegment(['roles', 'permissions'], 2)}}">Roles &amp; Permissions</a>
-        <ul class="submenu">
-          <li><a href="{{route('roles.index')}}" class="{{Nav::isResource('roles')}}">Roles</a></li>
-          <li><a href="{{route('permissions.index')}}" class="{{Nav::isResource('permissions')}}">Permissions</a></li>
-        </ul>
-      </li> --}}
-    </ul>
+        <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
+            <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+        </div>
 
-    <p class="menu-label">
-      Administration
-    </p>
-    <ul class="menu-list">
-      <li><a href="{{route('users.index')}}" class="{{Nav::isResource('users')}}">Manage Users</a></li>
-      <li>
-        <a class="has-submenu {{Nav::hasSegment(['roles', 'permissions'], 2)}}">Roles &amp; Permissions</a>
-        <ul class="submenu">
-          <li><a href="{{route('roles.index')}}" class="{{Nav::isResource('roles')}}">Roles</a></li>
-          <li><a href="{{route('permissions.index')}}" class="{{Nav::isResource('permissions')}}">Permissions</a></li>
-        </ul>
-      </li>
-      <li>
-        <a class="has-submenu">Example Accordion</a>
-        <ul class="submenu">
-          <li><a href="{{route('roles.index')}}">Roles</a></li>
-          <li><a href="{{route('permissions.index')}}">Permissions</a></li>
-        </ul>
-      </li>
-      <li>
-        <a class="has-submenu">Another Example</a>
-        <ul class="submenu">
-          <li><a href="{{route('roles.index')}}">Roles</a></li>
-          <li><a href="{{route('permissions.index')}}">Permissions</a></li>
-        </ul>
-      </li>
-    </ul>
-  </aside>
-</div>
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{{ route('manage.dashboard') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                </li>
+                <h3 class="menu-title">Content</h3><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Books</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Add New</a></li>
+                        <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">List</a></li>
+                    </ul>
+                </li>
+
+                <h3 class="menu-title">Manage</h3><!-- /.menu-title -->
+
+                
+                <li>
+                    <a href="{{ route('users.index') }}"> <i class="menu-icon ti-user"></i>Users </a>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Permission & Roles</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="{{ route('permissions.index') }}">Permission</a></li>
+                        <li><i class="menu-icon ti-themify-logo"></i><a href="{{ route('roles.index') }}">Roles</a></li>
+                    </ul>
+                </li>
+                <h3 class="menu-title">Extras</h3><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Login</a></li>
+                        <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
+                        <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{route('logout')}}" onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                        <i class="menu-icon fa fa-sign-out"></i>
+                        Logout
+                    </a>
+                    @include('_includes.forms.logout')
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>

@@ -7,24 +7,12 @@ return [
             'acl' => 'c,r,u,d',
             'profile' => 'r,u'
         ],
-        'administrator' => [
+        'librarian' => [
             'users' => 'c,r,u,d',
-            'profile' => 'r,u'
+            'books' => 'c,r,u,d',
         ],
-        'editor' => [
-            'profile' => 'r,u'
-        ],
-        'author' => [
-            'profile' => 'r,u'
-        ],
-        'contributor' => [
-            'profile' => 'r,u'
-        ],
-        'supporter' => [
-            'profile' => 'r,u'
-        ],
-        'subscriber' => [
-            'profile' => 'r,u'
+        'library_prefect' => [
+            'books' => 'c,r,u,d',
         ],
     ],
     'permission_structure' => [],
