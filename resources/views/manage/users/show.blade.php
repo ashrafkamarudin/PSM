@@ -5,7 +5,7 @@
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Dashboard</h1>
+                <h1>User Details</h1>
             </div>
         </div>
     </div>
@@ -13,7 +13,7 @@
         <div class="page-header float-right">
             <div class="page-title">
                 <ol class="breadcrumb text-right">
-                    <li class="active">Dashboard</li>
+                    <li class="active">User Details</li>
                 </ol>
             </div>
         </div>
@@ -26,25 +26,26 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title">
-                <h3 class="text-center">View User Details</h3>
+                <h3>View User Details</h3>
+                <a href="{{route('users.edit', $user->id)}}" class="text-right"><i class="fa fa-user-plus m-r-10"></i> Edit this User</a>
             </div>
             <hr>
-            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-              <div class="row form-group">
-                <div class="col col-md-3"><label class=" form-control-label">Name</label></div>
-                <div class="col-12 col-md-9">
-                  <p class="form-control-static">{{$user->name}}</p>
+            <form action="" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="cc-payment" class="control-label mb-1">Name</label>
+                <div class="col-12 col-md-12" style="background-color: #f8f9fa; border-radius: 3px;">
+                  <p class="form-control-static"><pre>{{$user->name}}</pre></p>
                 </div>
               </div>
-              <div class="row form-group">
-                <div class="col col-md-3"><label class=" form-control-label">Email</label></div>
-                <div class="col-12 col-md-9">
+              <div class="form-group">
+                <label for="cc-payment" class="control-label mb-1">Email</label>
+                <div class="col-12 col-md-12" style="background-color: #f8f9fa; border-radius: 3px;">
                   <p class="form-control-static"><pre>{{$user->email}}</pre></p>
                 </div>
               </div>
-              <div class="row form-group">
-                <div class="col col-md-3"><label class=" form-control-label">Role</label></div>
-                <div class="col-12 col-md-9">
+              <div class="form-group">
+                <label for="cc-payment" class="control-label mb-1">Role</label>
+                <div class="col-12 col-md-12" style="background-color: #f8f9fa; border-radius: 3px;">
                   <p class="form-control-static">
                     <ul>
                       @forelse ($user->roles as $role)
