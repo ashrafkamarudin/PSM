@@ -42,8 +42,8 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"> Borrow </a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"> Return </a>
+                                <a class="dropdown-item" href="{{ route('borrow') }}"> Borrow </a>
+                                <a class="dropdown-item" href="{{ route('return') }}"> Return </a>
                             </div>
                         </li>
                     </ul>
@@ -54,7 +54,7 @@
                         @guest
                             <li class="nav-item">
                                 @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('register') }}">Check In</a>
+                                    <a class="nav-link" href="{{ route('checkIn') }}">Check In</a>
                                 @endif
                             </li>
                             <li class="nav-item">

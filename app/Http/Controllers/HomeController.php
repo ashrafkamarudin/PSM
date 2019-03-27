@@ -26,4 +26,19 @@ class HomeController extends Controller
         return view('welcome')
             ->withBooks($books);
     }
+
+    public function borrow()
+    {
+        return view('circulation.borrow');
+    }
+
+    public function return()
+    {
+        return view('circulation.return');
+    }
+
+    public function checkIn()
+    {
+        return view('checkin');
+    }
 }
