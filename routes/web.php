@@ -18,7 +18,8 @@ Route::prefix('circulation')->group(function () {
 	Route::get('/return', 'HomeController@return')->name('return');
 });
 
-Route::get('/checkin', 'HomeController@checkIn')->name('checkIn');
+Route::get('/checkin', 'CheckinController@index')->name('checkIn');
+Route::post('/checkin', 'CheckinController@store')->name('checkin.store');
 
 Auth::routes();
 
@@ -32,6 +33,7 @@ Route::prefix('manage')->middleware('role:superadministrator|librarian|library_p
 	Route::resource('/roles', 'RoleController', ['except' => 'destroy']);
 	Route::resource('/posts', 'PostController');
 	Route::resource('/books', 'BookController');
+	Route::resource('/students', 'StudentController');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

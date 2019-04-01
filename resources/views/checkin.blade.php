@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container">
+
+    @include('_includes.notifications.flash-message')
+
     <div class="row justify-content-center">
         <div class="col-md-8">
 
@@ -11,11 +14,12 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <form>
+                    <form id="checkInForm" method="POST" action=" {{ route('checkin.store') }}">
+                        {{ csrf_field() }}
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">IC Number</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" placeholder="Enter IC Number">
+                                <input type="text" name="std_ic" class="form-control" placeholder="Enter IC Number">
                             </div>
                         </div>
                     </form>
@@ -25,7 +29,7 @@
 
             <div class="row mt-3">
                 <div class="col-lg-12">
-                    <button type="submit" class="btn btn-primary float-right">Check In</button>
+                    <button form="checkInForm" type="submit" class="btn btn-primary float-right">Check In</button>
                 </div>
             </div>
 
@@ -40,36 +44,31 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">List of Check In Students</h5>
+                                <h5 class="card-title">List of Check In Students today</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Students that has already checked in</h6>
                                 
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
+                                            <th scope="col">IC</th>
+                                            <th scope="col">Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
+
+                                        @forelse ($checkins as $key => $checkin)
                                             <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
+                                                <th scope="row"> {{ $key+1 }} </th>
+                                                <td> {{ $checkin->std_ic }} </td>
+                                                <td> {{ $checkin->created_at->format('g:i A') }} </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <th scope="row" colspan="3">No Student Checked In yet</th>
+                                            </tr>
+                                        @endforelse
+
                                     </tbody>
                                 </table>
                             </div> 
