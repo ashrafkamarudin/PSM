@@ -15,16 +15,15 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">IC Number</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" placeholder="Enter IC Number">
+                                <input type="password" class="form-control" name="std_ic" placeholder="Enter IC Number">
                             </div>
                         </div>
-                    </form>
 
-                    <form>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Enter Book's ID">
+                            <input type="text" class="form-control" name="book_isbn" placeholder="Enter Book's ISBN">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button">Search</button>
+                                <input type="submit" class="btn btn-outline-secondary" value="Search">
+                                <!-- <button class="btn btn-outline-secondary" type="button">Search</button> -->
                             </div>
                         </div>
                     </form>
