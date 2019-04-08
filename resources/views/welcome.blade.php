@@ -18,7 +18,7 @@
                     <div class="col-sm-9">
                         <h5 class="card-title"> {{ $book->title }} </h5>
                         <h6 class="card-subtitle mb-2 text-muted"> Author(s) : {{ $book->author }} </h6>
-                        <p class="card-text"> {{ $book->description }} </p>
+                        <p class="card-text"> {{ str_limit($book->description, $limit = 150, $end = '...') }} </p>
                         <a href="#" class="card-link">View Details</a>
                     </div>
                 </div>
