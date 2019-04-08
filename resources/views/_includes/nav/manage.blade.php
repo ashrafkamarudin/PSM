@@ -15,11 +15,18 @@
                     <a href="{{ route('manage.dashboard') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                 </li>
                 <h3 class="menu-title">Content</h3><!-- /.menu-title -->
+
+                
+
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Books</a>
                     <ul class="sub-menu children dropdown-menu">
+                        @permission('create-books')
                         <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('books.create') }}">Add New</a></li>
+                        @endpermission
+                        @permission('read-books')
                         <li><i class="fa fa-id-badge"></i><a href="{{ route('books.index') }}">List</a></li>
+                        @endpermission
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
@@ -34,8 +41,12 @@
 
                 
                 <li>
+                    @permission('read-users')
                     <a href="{{ route('users.index') }}"> <i class="menu-icon ti-user"></i>Users </a>
+                    @endpermission
                 </li>
+
+                @role('superadministrator')
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Permission & Roles</a>
                     <ul class="sub-menu children dropdown-menu">
@@ -43,6 +54,8 @@
                         <li><i class="menu-icon ti-themify-logo"></i><a href="{{ route('roles.index') }}">Roles</a></li>
                     </ul>
                 </li>
+                @endrole
+                
                 <h3 class="menu-title">Extras</h3><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>

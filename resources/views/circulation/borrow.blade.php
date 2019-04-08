@@ -11,11 +11,12 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <form>
+                    <form method="POST" action="{{ route('search') }}">
+                        {{csrf_field()}}
                         <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">IC Number</label>
+                            <label class="col-sm-2 col-form-label">IC Number</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" name="std_ic" placeholder="Enter IC Number">
+                                <input type="text" class="form-control" name="std_ic" placeholder="Enter IC Number">
                             </div>
                         </div>
 
@@ -47,23 +48,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    
+
+                                    @forelse ($books as $book)
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                        <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
+                                        
+                                        <td scope="col">  {{ $book->isbn }} </td>
+                                        <td scope="col">First</td>
+                                        <td scope="col">Last</td>
+                                        <td scope="col">Handle</td>
                                     <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    @empty
+                                        
+                                    @endforelse
+
                                 </tbody>
                             </table>
                         </div> 

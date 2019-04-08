@@ -29,7 +29,8 @@ class HomeController extends Controller
 
     public function borrow()
     {
-        return view('circulation.borrow');
+        $books = [];
+        return view('circulation.borrow')->withBooks($books);
     }
 
     public function return()
