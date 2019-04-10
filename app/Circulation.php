@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Circulation extends Model
 {
     //
+    protected $primaryKey = 'isbn';
 }

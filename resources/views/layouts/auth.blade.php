@@ -42,8 +42,8 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('borrow') }}"> Borrow </a>
-                                <a class="dropdown-item" href="{{ route('return') }}"> Return </a>
+                                <a class="dropdown-item" href="{{ route('circulation.borrow') }}"> Borrow </a>
+                                <a class="dropdown-item" href="{{ route('circulation.return') }}"> Return </a>
                             </div>
                         </li>
                     </ul>

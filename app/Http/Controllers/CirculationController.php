@@ -19,10 +19,64 @@ class CirculationController extends Controller
         //
     }
 
+    /**
+     * Display interface for circulation borrow
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function borrow()
     {
-        $books = array(); // empty array
+        // initialize empty list
+        $books = [];
+        session(['circulation_status' => 'borrow']);
+
+        // check if status is borrow or not
+        if (session()->get('circulation_status') == 'borrow') {
+            if (session()->has('books')) { //if session is created
+                $booksInSession = session()->get('books');
+            
+                // loop through the array and find book in database based on isbn
+                foreach ($booksInSession as $book) {
+                    $book = Book::find($book);
+                    array_push($books, $book);
+                } 
+            }
+        } else {
+            // reset books in session
+            $this->circulationReset();
+        }
+        
         return view('circulation.borrow')->withBooks($books); // return view with empty array
+    }
+
+    /**
+     * Display interface for circulation return
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function return()
+    {
+        // initialize empty list
+        $books = [];
+        session(['circulation_status' => 'return']);
+
+        // check if status is return or not
+        if (session()->get('circulation_status') == 'return') {
+            if (session()->has('books')) { //if session is created
+                $booksInSession = session()->get('books');
+            
+                // loop through the array and find book in database based on isbn
+                foreach ($booksInSession as $book) {
+                    $book = Book::find($book);
+                    array_push($books, $book);
+                } 
+            }
+        } else {
+            // reset books in session
+            $this->circulation_reset();
+        }
+        
+        return view('circulation.return')->withBooks($books); // return view with empty array
     }
 
     /**
@@ -44,6 +98,26 @@ class CirculationController extends Controller
     public function store(Request $request)
     {
         //
+        $bookCount = 0;
+
+        if (session()->has('books')) { //if session is created
+            $booksInSession = session()->get('books');
+        
+            // loop through the array and find book in database based on isbn
+            foreach ($booksInSession as $bookIsbn) {
+
+                $circulation = new Circulation();
+                $circulation->isbn = $bookIsbn;
+                $circulation->std_ic = session()->has('std_ic');
+                $circulation->staff = session()->has('std_ic');
+                $circulation->save();
+
+                $bookCount++;
+            } 
+        }
+
+        Session::flash('success', $bookCount . ' buku berjaya dipinjam.');
+        return redirect()->route('circulation.borrow');
     }
 
     /**
@@ -89,6 +163,92 @@ class CirculationController extends Controller
     public function destroy(Circulation $circulation)
     {
         //
+        $bookCount = 0;
+
+        if (session()->has('books')) { //if session is created
+            $booksInSession = session()->get('books');
+        
+            // loop through the array and find book in database based on isbn
+            foreach ($booksInSession as $bookIsbn) {
+
+                $circulation = Circulation::findOrFail($bookIsbn);
+                $circulation->delete();
+
+                $bookCount++;
+            } 
+        }
+
+        Session::flash('success', $bookCount . ' buku berjaya dipinjam.');
+        return redirect()->route('circulation.borrow');
+    }
+
+    /**
+     * search for book to borrow from table book
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function searchForBorrow(Request $request)
+    {
+        if (session()->has('std_ic') == NULL) {
+            session(['std_ic' => trim($request->std_ic)]);
+        }
+
+        // update circulation status
+        //session(['circulation_status' => $request->circulation_status]);
+
+        // find book in database
+        if (Book::find($request->book_isbn) != NULL) {
+            $this->saveBooksInSession();
+        } else {
+            Session::flash('error', 'Buku tidak dijumpai');
+        }
+        
+        //return view('circulation.borrow')->withBooks($books);
+
+        return redirect()->route(session()->get('circulation_status'));
+        //$request->session()->flush();
+    }
+
+    /**
+     * search for book to return from table circulation
+     *
+     * @param  \App\Circulation  $circulation
+     * @return \Illuminate\Http\Response
+     */
+    public function searchForReturn(Request $request)
+    {
+
+        // find book in database
+        if (Circulation::find($request->book_isbn) != NULL) {
+            $this->saveBooksInSession($request);
+        } else {
+            Session::flash('error', 'Buku tidak dijumpai');
+        }
+        
+        //return view('circulation.borrow')->withBooks($books);
+        return $this->routeRedirect();
+        //return redirect()->route(session()->get('circulation_status'));
+        //$request->session()->flush();
+    }
+
+    /**
+     * Reset session for book listing and std_ic
+     *
+     * @param  \App\Circulation  $circulation
+     * @return \Illuminate\Http\Response
+     */
+    public function circulationReset()
+    {
+        //reset session item
+        if (session()->has('books')) { //if session is created
+            session()->forget('books'); // forget session
+        }
+
+        if (session()->has('std_ic')) { //if session is created
+            session()->forget('std_ic'); // forget session
+        }
+
+        return $this->routeRedirect();
     }
 
     /**
@@ -97,60 +257,46 @@ class CirculationController extends Controller
      * @param  \App\Circulation  $circulation
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request)
+    public function saveBooksInSession(Request $request)
     {
-        // find book in database
-        if (Book::find($request->book_isbn) != NULL) {
-            if ($request->session()->has('books')) { //if session is created
-
-                // put all books data in session into $books
-                $books = $request->session()->get('books');
-
-                // initialize exist variable
-                $exist = 0; // 0 because book is not yet found in array
-                // loop through the array to find if book is already in the list or not
-                foreach ($books as $book) {
-                    if ($book == $request->book_isbn) {
-                        $exist = 1;
-                        //echo 'exist';
-                    }
-                }  
-
-                if ($exist == 0) { // if book is not yet in array then add
-                    $searchResult = Book::find($request->book_isbn);
-        
-                    if ($searchResult != NULL) {
-                        // add book's isbn in array list
-                        $request->session()->push('books', $request->book_isbn);
-                    } else {
-                        //echo 'Book not found';
-                    }
-                }
-            } else { // if session is not yet created
-                $request->session()->push('books', $request->book_isbn);
-            }
-        } else {
-            //echo 'not found';
-        }
-
-        //dd($request->session()->get('books'));
-
-        //if ($request->session()->has('books')) { //if session is created
+        if (session()->has('books')) { //if session is created
 
             // put all books data in session into $books
-            $booksInSession = $request->session()->get('books');
+            $books = session()->get('books');
 
-            $books = [];
-            // loop through the array and find book in database based on isbn
-            foreach ($booksInSession as $book) {
-                $book = Book::find($book);
-                array_push($books, $book);
-            } 
-        //}
-        
-        return view('circulation.borrow')->withBooks($books);
+            // initialize exist variable
+            $exist = 0; // 0 because book is not yet found in array
+            // loop through the array to find if book is already in the list or not
+            foreach ($books as $book) {
+                if ($book == $request->book_isbn) {
+                    $exist = 1;
+                    //echo 'exist';
+                    Session::flash('warning', 'Buku sudah ditambah');
+                }
+            }  
 
-        //return redirect()->route('borrow');
-        //$request->session()->flush();
+            if ($exist == 0) { // if book is not yet in array then add
+                $searchResult = Book::find($request->book_isbn);
+    
+                if ($searchResult != NULL) {
+                    // add book's isbn in array list
+                    session()->push('books', $request->book_isbn);
+                } 
+            }
+        } else { // if session is not yet created
+            session()->push('books', $request->book_isbn);
+        }
     }
+
+    /**
+     * Redirect back to either route circulation.borrow or circulation.return.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function routeRedirect()
+    {
+        return redirect()->route('circulation.' . session()->get('circulation_status'));
+    }
+
+
 }

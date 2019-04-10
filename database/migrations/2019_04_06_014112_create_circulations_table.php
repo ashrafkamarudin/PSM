@@ -15,6 +15,9 @@ class CreateCirculationsTable extends Migration
     {
         Schema::create('circulations', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('isbn');
+            $table->string('std_ic');
+            $table->string('staff');
             $table->timestamps();
         });
     }

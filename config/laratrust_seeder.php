@@ -4,11 +4,11 @@ return [
     'role_structure' => [
         'superadministrator' => [
             'users' => 'c,r,u,d',
-            'acl' => 'c,r,u,d',
-            'profile' => 'r,u'
+            'permissions' => 'c,r,u,d',
+            'roles' => 'c,r,u,d'
         ],
         'librarian' => [
-            'users' => 'c,r,u,d',
+            'students' => 'c,r,u,d',
             'books' => 'c,r,u,d',
         ],
         'library_prefect' => [

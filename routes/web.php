@@ -14,9 +14,12 @@
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::prefix('circulation')->group(function () {
-	Route::get('/borrow', 'CirculationController@borrow')->name('borrow');
-	Route::get('/return', 'HomeController@return')->name('return');
-	Route::post('/search', 'CirculationController@search')->name('search');
+	Route::get('/borrow', 'CirculationController@borrow')->name('circulation.borrow');
+	Route::get('/return', 'CirculationController@return')->name('circulation.return');
+	Route::post('/searchBorrow', 'CirculationController@searchForBorrow')->name('search.borrow');
+	Route::post('/searchReturn', 'CirculationController@searchForReturn')->name('search.return');
+	Route::get('/reset', 'CirculationController@circulationReset')->name('circulation.reset');
+	Route::resource('/circulation', 'CirculationController');
 });
 
 Route::get('/checkin', 'CheckinController@index')->name('checkIn');
