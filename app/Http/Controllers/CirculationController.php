@@ -198,14 +198,14 @@ class CirculationController extends Controller
 
         // find book in database
         if (Book::find($request->book_isbn) != NULL) {
-            $this->saveBooksInSession();
+            $this->saveBooksInSession($request);
         } else {
             Session::flash('error', 'Buku tidak dijumpai');
         }
         
         //return view('circulation.borrow')->withBooks($books);
-
-        return redirect()->route(session()->get('circulation_status'));
+        return $this->routeRedirect();
+        //return redirect()->route(session()->get('circulation_status'));
         //$request->session()->flush();
     }
 

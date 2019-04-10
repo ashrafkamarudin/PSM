@@ -42,5 +42,7 @@ class BooksTableSeeder extends Seeder
             'description' => 'In this book, Michael Feathers offers start-to-finish strategies for working more effectively with large, untested legacy code bases. This book draws on material Michael created for his own renowned Object Mentor seminars: techniques Michael has used in mentoring to help hundreds of developers, technical managers, and testers bring their legacy systems under control.
             This book also includes a catalog of twenty-four dependency-breaking techniques that help you work with program elements in isolation and make safer changes.'
         ]);
+
+        factory(App\Book::class, 100)->create();
     }
 }
