@@ -22,7 +22,7 @@ class HomeController extends Controller
         LaraFlash::success("Yay it worked!");
         LaraFlash::danger('Oops Something went wrong!');
 
-        $books = Book::all();
+        $books = Book::paginate(10);
         return view('welcome')
             ->withBooks($books);
     }
