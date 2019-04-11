@@ -65,7 +65,7 @@
 
             <div class="row mt-3">
                 <div class="col-lg-12">
-                    <form method="POST" action="{{ route('') }}">
+                    <form method="POST" action="{{ route('circulation.delete') }}">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" class="btn btn-primary float-right">Pulang</button>

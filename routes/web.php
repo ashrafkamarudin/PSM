@@ -19,6 +19,7 @@ Route::prefix('circulation')->group(function () {
 	Route::post('/searchBorrow', 'CirculationController@searchForBorrow')->name('search.borrow');
 	Route::post('/searchReturn', 'CirculationController@searchForReturn')->name('search.return');
 	Route::get('/reset', 'CirculationController@circulationReset')->name('circulation.reset');
+	Route::delete('/delete', 'CirculationController@delete')->name('circulation.delete');
 	Route::resource('/circulation', 'CirculationController');
 });
 
