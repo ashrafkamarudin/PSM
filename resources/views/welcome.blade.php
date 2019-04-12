@@ -6,7 +6,7 @@
 
         <div class="col-md-8">
 
-            <h1> Book List </h1>
+            <h1> Senarai Buku </h1>
             <hr>
 
             @forelse ($books as $book)
@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-3">
-                            Image
+                            Gambar
                         </div>
                         <div class="col-sm-9">
                             <h5 class="card-title"> {{ $book->title }} </h5>

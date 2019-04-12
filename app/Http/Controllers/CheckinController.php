@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Checkin;
 use App\Student;
 use Session;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CheckinController extends Controller
@@ -17,7 +18,8 @@ class CheckinController extends Controller
     public function index()
     {
         //
-        $checkin = Checkin::all();
+        $checkin = Checkin::whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+
         return view('checkin')->withCheckins($checkin);
     }
 
@@ -41,7 +43,7 @@ class CheckinController extends Controller
     {
         //
         if (Student::find($request->std_ic) != NULL) {
-            if (Checkin::find($request->std_ic) != NULL) {
+            if (Checkin::find($request->std_ic)->whereDate('created_at', '=', Carbon::today()->toDateString()) != NULL) {
                 Session::flash('error', 'Student already checked in. ');
             } else {
                 $checkin = new Checkin();

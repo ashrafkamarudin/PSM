@@ -15,7 +15,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
+        $students = Student::paginate(10);
         return view('manage.students.index')->withStudents($students);
     }
 
@@ -57,6 +57,8 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         //
+        $student = Student::find($student->ic)->first();
+        return view("manage.students.show")->withStudent($student);
     }
 
     /**

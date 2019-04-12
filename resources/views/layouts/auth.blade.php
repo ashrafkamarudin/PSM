@@ -35,16 +35,16 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}"> Home </a>
+                            <a class="nav-link" href="{{ route('login') }}"> Halaman Utama </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Circulation <span class="caret"></span>
+                                Sirkulasi Buku <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('circulation.borrow') }}"> Borrow </a>
-                                <a class="dropdown-item" href="{{ route('circulation.return') }}"> Return </a>
+                                <a class="dropdown-item" href="{{ route('circulation.borrow') }}"> Pinjam </a>
+                                <a class="dropdown-item" href="{{ route('circulation.return') }}"> Pulang </a>
                             </div>
                         </li>
                     </ul>
@@ -52,14 +52,14 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <li class="nav-item">
+                            @if (Route::has('register'))
+                                <a class="nav-link" href="{{ route('checkIn') }}">Daftar Masuk</a>
+                            @endif
+                        </li>
                         @guest
                             <li class="nav-item">
-                                @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('checkIn') }}">Check In</a>
-                                @endif
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}"> Log Masuk</a>
                             </li>
                         @else
                             <li class="nav-item dropdown">
@@ -71,7 +71,10 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Log Keluar
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('manage.dashboard') }}">
+                                        Dashboard
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -101,26 +101,32 @@ class CirculationController extends Controller
         //
         $bookCount = 0;
 
-        if (session()->has('books')) { //if session is created
-            $booksInSession = session()->get('books');
+        if (session()->has('std_ic') == NULL) {
+            if (Student::find($request->std_ic) != NULL) {
+                Session::flash('error', 'Maklumat Pelajar tidak dijumpai. Sila cuba sekali lagi.');
+            } else {   
+                if (session()->has('books')) { //if session is created
+                    $booksInSession = session()->get('books');
+                
+                    // loop through the array and find book in database based on isbn
+                    foreach ($booksInSession as $bookIsbn) {
         
-            // loop through the array and find book in database based on isbn
-            foreach ($booksInSession as $bookIsbn) {
-
-                $circulation = new Circulation();
-                $circulation->isbn = $bookIsbn;
-                $circulation->std_ic = session()->has('std_ic');
-                $circulation->staff = session()->has('std_ic');
-                $circulation->save();
-
-                $bookCount++;
-            } 
+                        $circulation = new Circulation();
+                        $circulation->isbn = $bookIsbn;
+                        $circulation->std_ic = session()->has('std_ic');
+                        $circulation->staff = session()->has('std_ic');
+                        $circulation->save();
+        
+                        $bookCount++;
+                    } 
+                }
+        
+                // clear books in session
+                $this->circulationReset();
+        
+                Session::flash('success', $bookCount . ' buku berjaya dipinjam.');
+            }
         }
-
-        // clear books in session
-        $this->circulationReset();
-
-        Session::flash('success', $bookCount . ' buku berjaya dipinjam.');
         return redirect()->route('circulation.borrow');
     }
 
