@@ -16,8 +16,6 @@
                 </li>
                 <h3 class="menu-title">Content</h3><!-- /.menu-title -->
 
-                
-
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Books</a>
                     <ul class="sub-menu children dropdown-menu">
@@ -35,6 +33,10 @@
                         <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('students.create') }}">Register - Manually</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="{{ route('students.index') }}">List</a></li>
                     </ul>
+                </li>
+
+                <li>
+                    <a href="{{ route('circulation.index') }}"> <i class="menu-icon ti-user"></i>Rekod Sirkulasi </a>
                 </li>
 
                 <h3 class="menu-title">Manage</h3><!-- /.menu-title -->

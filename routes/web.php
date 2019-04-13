@@ -39,6 +39,8 @@ Route::prefix('manage')->middleware('role:superadministrator|librarian|library_p
 	Route::resource('/posts', 'PostController');
 	Route::resource('/books', 'BookController');
 	Route::resource('/students', 'StudentController');
+
+	Route::get('/circulation', 'CirculationController@index');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -18,6 +18,10 @@ class CirculationController extends Controller
     public function index()
     {
         //
+        $books = Circulation::with('book')->paginate(10);
+
+        //dd($books);
+        return view('manage.circulation.index')->withBooks($books);
     }
 
     /**
