@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::prefix('circulation')->group(function () {
+Route::prefix('circulation')->middleware('role:superadministrator|librarian|library_prefect')->group(function () {
 	Route::get('/borrow', 'CirculationController@borrow')->name('circulation.borrow');
 	Route::get('/return', 'CirculationController@return')->name('circulation.return');
 	Route::post('/searchBorrow', 'CirculationController@searchForBorrow')->name('search.borrow');

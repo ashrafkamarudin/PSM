@@ -101,31 +101,33 @@ class CirculationController extends Controller
         //
         $bookCount = 0;
 
-        if (session()->has('std_ic') == NULL) {
-            if (Student::find($request->std_ic) != NULL) {
-                Session::flash('error', 'Maklumat Pelajar tidak dijumpai. Sila cuba sekali lagi.');
-            } else {   
-                if (session()->has('books')) { //if session is created
-                    $booksInSession = session()->get('books');
+        //dd(Student::find($request->std_ic));
+
+        if (Student::find($request->std_ic) === NULL) {
+            Session::flash('error', 'Maklumat Pelajar tidak dijumpai. Sila cuba sekali lagi.');
+            //dd(Student::find($request->std_ic));
+            //echo 'test';
+        } else {   
+            if (session()->has('books')) { //if session is created
+                $booksInSession = session()->get('books');
                 
-                    // loop through the array and find book in database based on isbn
-                    foreach ($booksInSession as $bookIsbn) {
+                // loop through the array and find book in database based on isbn
+                foreach ($booksInSession as $bookIsbn) {
         
-                        $circulation = new Circulation();
-                        $circulation->isbn = $bookIsbn;
-                        $circulation->std_ic = session()->has('std_ic');
-                        $circulation->staff = session()->has('std_ic');
-                        $circulation->save();
+                    $circulation = new Circulation();
+                    $circulation->isbn = $bookIsbn;
+                    $circulation->std_ic = $request->std_ic;
+                    $circulation->staff = auth()->user()->id;
+                    $circulation->save();
         
-                        $bookCount++;
-                    } 
-                }
-        
-                // clear books in session
-                $this->circulationReset();
-        
-                Session::flash('success', $bookCount . ' buku berjaya dipinjam.');
+                    $bookCount++;
+                } 
             }
+        
+            // clear books in session
+            $this->circulationReset();
+        
+            Session::flash('success', $bookCount . ' buku berjaya dipinjam.');
         }
         return redirect()->route('circulation.borrow');
     }
@@ -212,13 +214,7 @@ class CirculationController extends Controller
      */
     public function searchForBorrow(Request $request)
     {
-        if (session()->has('std_ic') == NULL) {
-            if (Student::find($request->std_ic) != NULL) {
-                Session::flash('error', 'Maklumat Pelajar tidak dijumpai. Sila cuba sekali lagi.');
-            } else {   
-                session(['std_ic' => trim($request->std_ic)]);
-            }
-        }
+        session(['std_ic' => trim($request->std_ic)]);
 
         // update circulation status
         //session(['circulation_status' => $request->circulation_status]);
