@@ -50,7 +50,7 @@
 									<td>{{$book->title}}</td>
 									<td>{{$book->author}}</td>
 									<td class="has-text-right">
-									<a class="btn btn-primary btn-sm m-r-5" href="{{route('users.show', $book->id)}}">View</a>
+											<a class="btn btn-primary btn-sm m-r-5" href="{{route('students.show', $book->isbn)}}">View</a>
 									<a class="btn btn-success btn-sm" href="{{route('users.edit', $book->id)}}">Edit</a>
 									</td>
 								</tr>

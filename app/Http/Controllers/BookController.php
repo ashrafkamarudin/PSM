@@ -58,6 +58,9 @@ class BookController extends Controller
     public function show(Books $books)
     {
         //
+        $book = Book::find($books->isbn)->first();
+        //$book = Book::find('9780132350884')->first();
+        return view("manage.books.show")->withBook($book);
     }
 
     /**

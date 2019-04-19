@@ -52,6 +52,11 @@
 									<td class="has-text-right">
 										<a class="btn btn-primary btn-sm m-r-5" href="{{route('students.show', $student->ic)}}">View</a>
 										<a class="btn btn-success btn-sm" href="{{route('students.edit', $student->ic)}}">Edit</a>
+										<form method="POST" action="{{route('students.destroy', $student->ic)}}">
+											{{ csrf_field() }}
+											{{ method_field('DELETE') }}
+											<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda pasti ?');">Delete</button>
+										</form>
 									</td>
 								</tr>
 							

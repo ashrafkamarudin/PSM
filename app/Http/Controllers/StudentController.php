@@ -70,6 +70,8 @@ class StudentController extends Controller
     public function edit(Student $student)
     {
         //
+        $student = Student::find($student->ic)->first();
+        return view("manage.students.edit")->withStudent($student);
     }
 
     /**
@@ -82,6 +84,16 @@ class StudentController extends Controller
     public function update(Request $request, Student $student)
     {
         //
+        $student = Student::where('id', '=', $request->id)->first();
+        $student->name = $request->name;
+        $student->ic = $request->ic;
+        $student->form = $request->form;
+        $student->save();
+
+        //dd($student);
+
+        Session::flash('success', 'Data berjaya diubah.');
+        return redirect()->route('students.index');
     }
 
     /**
@@ -93,6 +105,14 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+        $student = Student::find($student->ic);
+
+        //dd($student);
+
+        $student->delete();
+
+        Session::flash('success', 'Data berjaya dipadam.');
+        return redirect()->route('students.index');
     }
 
     /**
