@@ -37,6 +37,7 @@
 									<th>isbn</th>
 									<th>Judul Buku</th>
                                     <th>Peminjam</th>
+                                    <th>Direkod Oleh</th>
                                     <th>Tarikh Pinjam</th>
 								</tr>
 							</thead>
@@ -49,6 +50,7 @@
 									<td>{{ $book->isbn }}</td>
 									<td>{{ $book->book->title }}</td>
                                     <td>{{ $book->student->name }}</td>
+                                    <td>{{ $book->user->name }}</td>
                                     <td>{{ $book->created_at->format('d/m/Y') }}</td>
 								</tr>
 								

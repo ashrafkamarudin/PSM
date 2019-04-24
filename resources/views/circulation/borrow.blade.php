@@ -34,7 +34,7 @@
                             <input type="text" class="form-control" name="book_isbn" placeholder="Masukkan Nombor ISBN Buku">
                             <input type="hidden" name="circulation_status" value="borrow">
                             <div class="input-group-append">
-                                <input type="submit" class="btn btn-outline-secondary" value="Tambah">
+                                <input type="submit" class="btn btn-outline-secondary" value="Cari">
                                 <!-- <button class="btn btn-outline-secondary" type="button">Search</button> -->
                             </div>
                         </div>

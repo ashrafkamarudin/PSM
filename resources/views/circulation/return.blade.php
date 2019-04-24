@@ -17,7 +17,7 @@
                             <input type="text" class="form-control" name="book_isbn" placeholder="Masukkan Nombor ISBN Buku">
                             <input type="hidden" name="circulation_status" value="return">
                             <div class="input-group-append">
-                                <input type="submit" class="btn btn-outline-secondary" value="Tambah">
+                                <input type="submit" class="btn btn-outline-secondary" value="Cari">
                             </div>
                         </div>
                     </form>
