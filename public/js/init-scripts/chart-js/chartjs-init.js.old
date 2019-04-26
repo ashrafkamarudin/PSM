@@ -1,0 +1,37 @@
+( function ( $ ) {
+    "use strict";
+
+    //bar chart
+    var ctx = document.getElementById( "barChart" );
+    //    ctx.height = 200;
+    var myChart = new Chart( ctx, {
+        type: 'bar',
+        data: {
+            labels: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Disember" ],
+            datasets: [{
+                label: "Lelaki",
+                data: [ 65, 59, 80, 81, 56, 55, 40, 8, 9, 10, 11, 22 ],
+                borderColor: "rgba(0, 123, 255, 0.9)",
+                borderWidth: "0",
+                backgroundColor: "rgba(0, 123, 255, 0.5)"
+            },
+            {
+                label: "Perempuan",
+                data: [ 28, 48, 40, 19, 86, 27, 90, 2, 8, 9, 10, 11 ],
+                borderColor: "rgba(0,0,0,0.09)",
+                borderWidth: "0",
+                backgroundColor: "rgba(232,62,140,0.5)"
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [ {
+                    ticks: {
+                        beginAtZero: true
+                    }
+                } ]
+            }
+        }
+    } );
+
+} )( jQuery );

@@ -66,6 +66,12 @@
     <script src="{{ asset('vendors/jqvmap/dist/jquery.vmap.min.js') }}"></script>
     <script src="{{ asset('vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') }}"></script>
     <script src="{{ asset('vendors/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+
+
+    <!--  Chart js -->
+    <script src="{{ asset('vendors/chart.js/dist/Chart.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/init-scripts/chart-js/chartjs-init.js') }}"></script>
+
     <script>
         (function($) {
             "use strict";
@@ -84,6 +90,8 @@
             });
         })(jQuery);
     </script>
+
+    @yield('script')
 
 </body>
 

@@ -13,4 +13,9 @@ class Student extends Model
     {
         return $this->hasMany('App\Circulation');
     }
+
+    public function CheckIn($value='')
+    {
+        return $this->hasMany('App\Checkin');
+    }
 }

@@ -17,26 +17,26 @@
                 <h3 class="menu-title">Content</h3><!-- /.menu-title -->
 
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Books</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Buku</a>
                     <ul class="sub-menu children dropdown-menu">
                         @permission('create-books')
-                        <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('books.create') }}">Add New</a></li>
+                        <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('books.create') }}">Tambah</a></li>
                         @endpermission
                         @permission('read-books')
-                        <li><i class="fa fa-id-badge"></i><a href="{{ route('books.index') }}">List</a></li>
+                        <li><i class="fa fa-id-badge"></i><a href="{{ route('books.index') }}">Senarai Buku</a></li>
                         @endpermission
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Students</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Pelajar</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('students.create') }}">Register - Manually</a></li>
-                        <li><i class="fa fa-id-badge"></i><a href="{{ route('students.index') }}">List</a></li>
+                        <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('students.create') }}">Daftar Pelajar</a></li>
+                        <li><i class="fa fa-id-badge"></i><a href="{{ route('students.index') }}">Senarai Pelajar</a></li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="{{ route('circulation.index') }}"> <i class="menu-icon ti-user"></i>Rekod Sirkulasi </a>
+                    <a href="{{ route('circulation.index') }}"> <i class="menu-icon ti-user"></i>Rekod Sirkulasi</a>
                 </li>
 
                 <h3 class="menu-title">Manage</h3><!-- /.menu-title -->
@@ -44,16 +44,22 @@
                 
                 <li>
                     @permission('read-users')
-                    <a href="{{ route('users.index') }}"> <i class="menu-icon ti-user"></i>Users </a>
+                    <a href="{{ route('users.index') }}"> <i class="menu-icon ti-user"></i>Akaun Pengguna </a>
+                    @endpermission
+                </li>
+
+                <li>
+                    @permission('read-users')
+                    <a href="{{ route('report.index') }}"> <i class="menu-icon ti-user"></i>Laporan Daftar Masuk </a>
                     @endpermission
                 </li>
 
                 @role('superadministrator')
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Permission & Roles</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Peranan & Kebenaran</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="{{ route('permissions.index') }}">Permission</a></li>
-                        <li><i class="menu-icon ti-themify-logo"></i><a href="{{ route('roles.index') }}">Roles</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="{{ route('roles.index') }}">Peranan</a></li>
+                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="{{ route('permissions.index') }}">Kebenaran</a></li>
                     </ul>
                 </li>
                 @endrole
