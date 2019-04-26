@@ -50,13 +50,15 @@
 									<td> {{ $student->ic }} </td>
 									<td> {{ $student->form }} </td>
 									<td class="has-text-right">
-										<a class="btn btn-primary btn-sm m-r-5" href="{{route('students.show', $student->ic)}}">View</a>
-										<a class="btn btn-success btn-sm" href="{{route('students.edit', $student->ic)}}">Edit</a>
-										<form method="POST" action="{{route('students.destroy', $student->ic)}}">
-											{{ csrf_field() }}
-											{{ method_field('DELETE') }}
-											<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda pasti ?');">Delete</button>
-										</form>
+										<div class="row">
+											<a class="btn btn-primary btn-sm" href="{{route('students.show', $student->ic)}}" title="View Student"><i class="ti-eye"></i></a>
+											<a class="btn btn-success btn-sm" href="{{route('students.edit', $student->ic)}}" title="Edit Student"><i class="ti-pencil"></i></a>
+											<form method="POST" action="{{route('students.destroy', $student->ic)}}">
+												{{ csrf_field() }}
+												{{ method_field('DELETE') }}
+												<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda pasti ?');" title="Delete Student"><i class="ti-trash"></i></button>
+											</form>
+										</div>
 									</td>
 								</tr>
 							

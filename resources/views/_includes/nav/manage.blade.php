@@ -5,16 +5,16 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
+            <a class="navbar-brand" href="./"><h1>E - MSRC</h1></a>
             <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
         </div>
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="{{ route('manage.dashboard') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    <a href="{{ route('manage.dashboard') }}"> <i class="menu-icon fa fa-dashboard"></i>Halaman Utama </a>
                 </li>
-                <h3 class="menu-title">Content</h3><!-- /.menu-title -->
+                <h3 class="menu-title">Isi Kandungan</h3><!-- /.menu-title -->
 
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Buku</a>
@@ -28,7 +28,7 @@
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Pelajar</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti-user"></i>Pelajar</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('students.create') }}">Daftar Pelajar</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="{{ route('students.index') }}">Senarai Pelajar</a></li>
@@ -36,10 +36,10 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('circulation.index') }}"> <i class="menu-icon ti-user"></i>Rekod Sirkulasi</a>
+                    <a href="{{ route('circulation.index') }}"> <i class="menu-icon ti-agenda"></i>Rekod Sirkulasi</a>
                 </li>
 
-                <h3 class="menu-title">Manage</h3><!-- /.menu-title -->
+                <h3 class="menu-title">Pengurusan</h3><!-- /.menu-title -->
 
                 
                 <li>
@@ -49,8 +49,8 @@
                 </li>
 
                 <li>
-                    @permission('read-users')
-                    <a href="{{ route('report.index') }}"> <i class="menu-icon ti-user"></i>Laporan Daftar Masuk </a>
+                    @permission('read-report')
+                    <a href="{{ route('report.index') }}"> <i class="menu-icon ti-bar-chart"></i>Laporan Daftar Masuk </a>
                     @endpermission
                 </li>
 
@@ -64,19 +64,19 @@
                 </li>
                 @endrole
                 
-                <h3 class="menu-title">Extras</h3><!-- /.menu-title -->
+                <h3 class="menu-title">Fungsi Tambahan</h3><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Circulation</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Sirkulasi</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-sign-in"></i><a href=" {{ route('circulation.borrow') }} ">Borrow</a></li>
-                        <li><i class="menu-icon fa fa-sign-in"></i><a href=" {{ route('circulation.return') }} ">Return</a></li>
+                        <li><i class="menu-icon fa fa-sign-in"></i><a href=" {{ route('circulation.borrow') }} ">Pinjam</a></li>
+                        <li><i class="menu-icon fa fa-sign-in"></i><a href=" {{ route('circulation.return') }} ">Pulang</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="{{route('logout')}}" onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
                         <i class="menu-icon fa fa-sign-out"></i>
-                        Logout
+                        Log Keluar
                     </a>
                     @include('_includes.forms.logout')
                 </li>

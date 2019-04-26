@@ -31,8 +31,8 @@ Auth::routes();
 Route::prefix('manage')->middleware('role:superadministrator|librarian|library_prefect')->group(function () {
 	Route::get('/', 'ManageController@index');
 	Route::get('/dashboard', 'ManageController@dashboard')->name('manage.dashboard');
-	Route::get('/report', 'CheckInReportController@index')->name('report.index');
-	Route::get('/result', 'CheckInReportController@result')->name('report.result');
+	Route::get('/report', 'CheckInReportController@index')->name('report.result');
+	Route::get('/result', 'CheckInReportController@result')->name('report.index');
 
 	Route::resource('/users', 'UserController');
 	Route::resource('/permissions', 'PermissionController', ['except' => 'destroy']);

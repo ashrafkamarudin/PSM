@@ -63,7 +63,7 @@
         data: {
             labels: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Disember" ],
             datasets: [{
-                label: "Lelaki",
+                label: "Semua",
                 data: [ 
                     {{ $monthly['01'] or 0 }}, 
                     {{ $monthly['02'] or 0 }}, 

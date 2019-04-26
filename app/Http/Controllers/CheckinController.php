@@ -41,10 +41,11 @@ class CheckinController extends Controller
      */
     public function store(Request $request)
     {   
-        //dd(Checkin::find($request->std_ic)->whereDate('created_at', '=', Carbon::today()->toDateString())->get() );
-        //
+        //where('email', $email)
+        $result = Checkin::where('std_ic', $request->std_ic)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+        //dd($result->isEmpty());
         if (Student::find($request->std_ic) != NULL) {
-            if (Checkin::find($request->std_ic) != NULL) {
+            if (!$result->isEmpty()) {
                 Session::flash('error', 'Student already checked in. ');
             } else {
                 $checkin = new Checkin();
