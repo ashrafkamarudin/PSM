@@ -19,6 +19,8 @@ Route::prefix('circulation')->middleware('role:superadministrator|librarian|libr
 	Route::post('/searchBorrow', 'CirculationController@searchForBorrow')->name('search.borrow');
 	Route::post('/searchReturn', 'CirculationController@searchForReturn')->name('search.return');
 	Route::get('/reset', 'CirculationController@circulationReset')->name('circulation.reset');
+	Route::get('/borrow-receipt', 'CirculationController@borrowReceipt')->name('circulation.borrowReceipt');
+	Route::get('/return-receipt', 'CirculationController@returnReceipt')->name('circulation.returnReceipt');
 	Route::delete('/delete', 'CirculationController@delete')->name('circulation.delete');
 	Route::resource('/circulation', 'CirculationController');
 });
@@ -40,6 +42,7 @@ Route::prefix('manage')->middleware('role:superadministrator|librarian|library_p
 	Route::resource('/posts', 'PostController');
 	Route::resource('/books', 'BookController');
 	Route::resource('/students', 'StudentController');
+	Route::resource('/circulation-history', 'CirculationHistoryController');
 
 	Route::get('/circulation', 'CirculationController@index');
 });

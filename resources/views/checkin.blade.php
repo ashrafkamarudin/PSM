@@ -41,13 +41,15 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Senarai Daftar Masuk Pelajar hari ini</h5>
+                        <h5 class="card-title">Senarai Daftar Masuk Pelajar hari ini </h5>
                         <h6 class="card-subtitle mb-2 text-muted">Pelajar yang sudah daftar masuk</h6>
+                        <h2 class="float-right" style="margin-top:-50px">{{ \Carbon\Carbon::today()->format('d/m/Y') }}</h2>
                                 
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
+                                    <th scope="col">Nama Pelajar</th>
                                     <th scope="col">Nombor IC</th>
                                     <th scope="col">Masa</th>
                                 </tr>
@@ -57,6 +59,7 @@
                                 @forelse ($checkins as $key => $checkin)
                                     <tr>
                                         <td scope="row"> {{ $key+1 }} </td>
+                                        <td> {{ $checkin->student->name }} </td>
                                         <td> {{ $checkin->std_ic }} </td>
                                         <td> {{ $checkin->created_at->format('g:i A') }} </td>
                                     </tr>

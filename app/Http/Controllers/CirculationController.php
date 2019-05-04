@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Circulation;
+use App\CirculationHistory;
 use App\Book;
 use App\Student;
 use Session;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class CirculationController extends Controller
 {
@@ -102,21 +105,25 @@ class CirculationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // initialize
         $bookCount = 0;
+        $books = collect();
 
-        //dd(Student::find($request->std_ic));
+        $student = Student::find($request->std_ic);
 
-        if (Student::find($request->std_ic) === NULL) {
+        if ($student == null) {
+
             Session::flash('error', 'Maklumat Pelajar tidak dijumpai. Sila cuba sekali lagi.');
-            //dd(Student::find($request->std_ic));
-            //echo 'test';
+
+            return redirect()->route('circulation.borrow');
         } else {   
             if (session()->has('books')) { //if session is created
                 $booksInSession = session()->get('books');
                 
                 // loop through the array and find book in database based on isbn
                 foreach ($booksInSession as $bookIsbn) {
+
+                    $books->push(Book::find($bookIsbn)->first());
         
                     $circulation = new Circulation();
                     $circulation->isbn = $bookIsbn;
@@ -129,11 +136,34 @@ class CirculationController extends Controller
             }
         
             // clear books in session
-            $this->circulationReset();
+            //$this->circulationReset();
         
             Session::flash('success', $bookCount . ' buku berjaya dipinjam.');
         }
-        return redirect()->route('circulation.borrow');
+
+        return redirect()->route('circulation.borrowReceipt')
+            ->withStudent($student)
+            ->withBooks($books);
+    }
+
+    /**
+     * Display a borrow receipt and listing of books borrowed.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function borrowReceipt()
+    {
+        //
+        if (session()->get('student') !== NULL && session()->get('books') !==NULL) {
+            $student = session()->get('student');
+            $books = session()->get('books');
+            
+            return view('circulation.borrow-receipt')
+                ->withStudent($student)
+                ->withBooks($books);
+        } else {
+            return redirect()->route('circulation.borrow');
+        }
     }
 
     /**
@@ -190,15 +220,25 @@ class CirculationController extends Controller
     {
         //
         $bookCount = 0;
+        $books = collect();
         
         if (session()->has('books')) { //if session is created
             $booksInSession = session()->get('books');
             
             // loop through the array and find book in database based on isbn
             foreach ($booksInSession as $bookIsbn) {
+                $books->push(Book::find($bookIsbn)->first());
 
                 $circulation = Circulation::find($bookIsbn);
                 $circulation->delete();
+
+                //dd($circulation);
+
+                $circulationHistory = new CirculationHistory();
+                $circulationHistory->isbn = $circulation->isbn;
+                $circulationHistory->std_ic = $circulation->std_ic;
+                $circulationHistory->staff = $circulation->staff;
+                $circulationHistory->save();
 
                 $bookCount++;
             } 
@@ -208,7 +248,27 @@ class CirculationController extends Controller
         $this->circulationReset();
 
         Session::flash('success', $bookCount . ' buku berjaya dipulang.');
-        return redirect()->route('circulation.return');
+        //return redirect()->route('circulation.return');
+        return redirect()->route('circulation.returnReceipt')
+            ->withBooks($books);
+    }
+
+    /**
+     * Display a borrow receipt and listing of books borrowed.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function returnReceipt()
+    {
+        //
+        if (session()->get('books') !==NULL) {
+            $books = session()->get('books');
+            
+            return view('circulation.return-receipt')
+                ->withBooks($books);
+        } else {
+            return redirect()->route('circulation.return');
+        }
     }
 
     /**
