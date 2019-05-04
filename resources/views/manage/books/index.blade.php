@@ -50,8 +50,15 @@
 									<td>{{$book->title}}</td>
 									<td>{{$book->author}}</td>
 									<td class="has-text-right">
-											<a class="btn btn-primary btn-sm m-r-5" href="{{route('students.show', $book->isbn)}}">View</a>
-									<a class="btn btn-success btn-sm" href="{{route('users.edit', $book->id)}}">Edit</a>
+										<div class="row">
+											<a class="btn btn-primary btn-sm" href="{{route('books.show', $book->isbn)}}" title="View Student"><i class="ti-eye"></i></a>
+											<a class="btn btn-success btn-sm" href="{{route('books.edit', $book->isbn)}}" title="Edit Student"><i class="ti-pencil"></i></a>
+											<form method="POST" action="{{route('books.destroy', $book->isbn)}}">
+												{{ csrf_field() }}
+												{{ method_field('DELETE') }}
+												<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda pasti ?');" title="Delete Book"><i class="ti-trash"></i></button>
+											</form>
+										</div>
 									</td>
 								</tr>
 								

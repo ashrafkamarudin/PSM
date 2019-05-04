@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     //
-    protected $primaryKey = 'ic';
+    protected $primaryKey = 'ic_no';
+
+    function getIcAttribute() {
+        return str_pad($this->ic_no,12,'0',STR_PAD_LEFT);
+    }
 
     public function circulation($value='')
     {

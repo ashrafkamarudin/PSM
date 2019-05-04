@@ -22,19 +22,17 @@
 
 <div class="content mt-3">
 	<div class="animated fadeIn">
+        <h5>Rekod Sirkulasi Sekarang</h5>
+        <hr>
 
     	<div class="row">
     		<div class="col-md-12">
         		<div class="card">
-          			<div class="card-header">
-            			<strong class="card-title">Data Table</strong>
-          			</div>
 					<div class="card-body">
 						<table class="table">
-							<thead>
+							<thead class="thead-dark">
 								<tr>
 									<th>id</th>
-									<th>isbn</th>
 									<th>Judul Buku</th>
                                     <th>Peminjam</th>
                                     <th>Direkod Oleh</th>
@@ -47,7 +45,6 @@
 
 								<tr>
 									<td>{{ $key+1 }}</th>
-									<td>{{ $book->isbn }}</td>
 									<td>{{ $book->book->title }}</td>
                                     <td>{{ $book->student->name }}</td>
                                     <td>{{ $book->user->name }}</td>

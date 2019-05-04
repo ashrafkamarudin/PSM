@@ -27,8 +27,8 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title">
-                <h3>View Student Details</h3>
-                <a href="{{route('books.edit', $book->id)}}" class="text-right"><i class="fa fa-user-plus m-r-10"></i> Edit this User</a>
+                <h3>View Book Details</h3>
+                <a href="{{route('books.edit', $book->isbn)}}" class="text-right"><i class="fa fa-user-plus m-r-10"></i> Edit this User</a>
             </div>
             <hr>
             <form action="" method="post" enctype="multipart/form-data">
@@ -50,6 +50,14 @@
                   <p class="form-control-static"><pre>{{$book->publisher}}</pre></p>
                 </div>
               </div>
+              <div class="form-group">
+                  <label for="cc-payment" class="control-label mb-1">Huraian</label>
+                  <div class="col-12 col-md-12" style="background-color: #f8f9fa; border-radius: 3px;">
+                    <p class="form-control-static">
+                      {{$book->description}}
+                    </p>
+                  </div>
+                </div>
             </form>
           </div>
         </div>

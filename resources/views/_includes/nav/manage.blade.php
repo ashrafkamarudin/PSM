@@ -45,16 +45,16 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="{{ route('circulation.index') }}"> <i class="menu-icon ti-agenda"></i>Rekod Sirkulasi Sekarang</a>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti-agenda"></i>Rekod Sirkulasi</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon ti-files"></i><a href=" {{ route('circulation.index') }} ">Sekarang</a></li>
+                        <li><i class="menu-icon ti-archive"></i><a href=" {{ route('circulation-history.index') }} ">Terdahulu</a></li>
+                    </ul>
                 </li>
 
                 <li>
-                    <a href="{{ route('circulation-history.index') }}"> <i class="menu-icon ti-agenda"></i>Rekod Sirkulasi Terdahulu</a>
-                </li>
-
-                <li>
-                    <a href="{{ route('circulation.index') }}"> <i class="menu-icon ti-agenda"></i>Tetapan Sirkulasi</a>
+                    <a href="{{ route('circulation.index') }}"> <i class="menu-icon ti-settings"></i>Tetapan Sirkulasi</a>
                 </li>
 
                 <h3 class="menu-title">Pengurusan</h3><!-- /.menu-title -->

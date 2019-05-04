@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CirculationHistory;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CirculationHistoryController extends Controller
 {
@@ -14,10 +15,48 @@ class CirculationHistoryController extends Controller
      */
     public function index()
     {
-        ////
         $books = CirculationHistory::with('book')->paginate(10);
+        $recordDates = collect();
 
-        return view('manage.circulation.index')->withBooks($books);
+        $records = CirculationHistory::selectRaw("Month(created_at) as month, YEAR(created_at) as year")
+            ->groupBy('month', 'year')->get();
+
+        foreach ($records as $record) {
+            $month = $record->month;
+            $year = $record->year;
+
+            $date = Carbon::createFromDate($year, $month, 1);
+            $recordDates->push($date->format('F Y'));
+        }
+
+
+        //dd($recordDates);
+
+        return view('manage.circulation.history')
+            ->withRecords($books)
+            ->withRecordDates($recordDates);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function filter(Request $request)
+    {
+        //
+
+        $date = Carbon::createFromFormat('F Y', $request->date);
+
+        $records = CirculationHistory::with('book')
+            ->whereMonth('created_at', '=', $date->month)
+            ->whereYear('created_at', '=', $date->year)
+            ->paginate(10);
+
+        return view('manage.circulation.history-filtered')
+            ->withDate($date->format('F Y'))
+            ->withRecords($records);
     }
 
     /**

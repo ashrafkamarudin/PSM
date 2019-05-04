@@ -36,13 +36,19 @@ Route::prefix('manage')->middleware('role:superadministrator|librarian|library_p
 	Route::get('/report', 'CheckInReportController@index')->name('report.result');
 	Route::get('/result', 'CheckInReportController@result')->name('report.index');
 
-	Route::resource('/users', 'UserController');
-	Route::resource('/permissions', 'PermissionController', ['except' => 'destroy']);
+	Route::resources([
+		'users' => 'UserController',
+		'permissions' => 'PermissionController',
+		'posts' => 'PostController',
+		'books' => 'BookController',
+		'students' => 'StudentController',
+		'permissions' => 'PermissionController'
+	]);
+
 	Route::resource('/roles', 'RoleController', ['except' => 'destroy']);
-	Route::resource('/posts', 'PostController');
-	Route::resource('/books', 'BookController');
-	Route::resource('/students', 'StudentController');
-	Route::resource('/circulation-history', 'CirculationHistoryController');
+	Route::resource('/circulation-history', 'CirculationHistoryController', ['only' => 'index', 'show']);
+
+	Route::post('/circulation-history', 'CirculationHistoryController@filter')->name('circulation-history.filter');
 
 	Route::get('/circulation', 'CirculationController@index');
 });

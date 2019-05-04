@@ -30,24 +30,41 @@
                     <strong>Create Book Form</strong>
                 </div>
                 <div class="card-body card-block">
-                    <form action="{{ route('books.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal" id="create_book_form">
+                    <form action="{{ route('books.update', $book->isbn) }}" method="post" enctype="multipart/form-data" class="form-horizontal" id="create_book_form">
                         {{ csrf_field() }}
+                        {{method_field('PUT')}}
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">ISBN</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="text-input" name="isbn" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
+                            <div class="col-12 col-md-12">
+                                <input type="text" name="isbn" class="form-control" value="{{$book->isbn}}">
+                            </div>
                         </div>
                         <div class="row form-group">
-                            <div class="col col-md-3"><label for="email-input" class=" form-control-label">Title</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="email-input" name="title" placeholder="Enter Email" class="form-control"><small class="help-block form-text">Please enter your email</small></div>
+                            <div class="col col-md-3"><label for="email-input" class=" form-control-label">Judul</label></div>
+                            <div class="col-12 col-md-12">
+                                <input type="text" name="title" class="form-control" value="{{$book->title}}">
+                            </div>
                         </div>
                         <div class="row form-group">
-                            <div class="col col-md-3"><label for="password-input" class=" form-control-label">Author</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="password-input" name="author" placeholder="Password" class="form-control"><small class="help-block form-text">Please enter a complex password</small></div>
+                            <div class="col col-md-3"><label for="password-input" class=" form-control-label">Penulis</label></div>
+                            <div class="col-12 col-md-12">
+                                <input type="text" name="author" class="form-control" value="{{$book->author}}">
+                            </div>
                         </div>
                         <div class="row form-group">
-                            <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Description</label></div>
-                            <div class="col-12 col-md-9"><textarea name="description" id="textarea-input" rows="9" placeholder="Content..." class="form-control"></textarea></div>
+                            <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Penerbit</label></div>
+                            <div class="col-12 col-md-12">
+                                <input type="text" name="publisher" class="form-control" value="{{$book->publisher}}">
+                            </div>
                         </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Huraian</label></div>
+                            <div class="col-12 col-md-12">
+                                <input type="text" name="description" class="form-control" value="{{$book->description}}">
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="id" value="{{$book->id}}">
                     </form>
                 </div>
                 <div class="card-footer">
