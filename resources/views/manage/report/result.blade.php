@@ -24,27 +24,45 @@
 	<div class="animated fadeIn">
 
     	<div class="row">
-    		<div class="col-md-12">
-        		<div class="card">
-          			<div class="card-header">
-            			<strong class="card-title">Data Table</strong>
-          			</div>
-					<div class="card-body">
+    		<div class="col-md-9">
             
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="mb-3">Bar chart </h4>
-                                    <canvas id="barChart"></canvas>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mb-3">Bar chart </h4>
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+            
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mb-3">Tetapan </h4>
+                        <form action="" method="POST">
+                            
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Masa</label>
+                                <div class="col-12 col-md-12">
+                                    <div class="form-check">
+                                        <div class="radio">
+                                            <label for="radio1" class="form-check-label ">
+                                                <input type="radio" id="radio1" name="radios" value="option1" class="form-check-input">Bulanan
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label for="radio1" class="form-check-label ">
+                                                <input type="radio" id="radio1" name="radios" value="option1" class="form-check-input">Tahunan
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div><!-- /# column -->
+                        </form>
+                    </div>
+                </div>
                         
-                    </div>
-                    <div class="card-footer">
-                    </div>
-        		</div>
-      		</div>
+      		</div>  
 		</div>
 	</div><!-- .animated -->
 </div><!-- .content -->
