@@ -15,7 +15,7 @@ class CirculationHistoryController extends Controller
      */
     public function index()
     {
-        $books = CirculationHistory::with('book')->paginate(10);
+        $books = CirculationHistory::with('book')->paginate(5);
         $recordDates = collect();
 
         $records = CirculationHistory::selectRaw("Month(created_at) as month, YEAR(created_at) as year")

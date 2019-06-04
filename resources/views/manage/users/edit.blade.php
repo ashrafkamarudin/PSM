@@ -1,74 +1,103 @@
 @extends('layouts.manage')
 
 @section('content')
-  <div class="flex-container">
-    <div class="columns m-t-10">
-      <div class="column">
-        <h1 class="title">Edit User</h1>
-      </div>
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Dashboard</h1>
+            </div>
+        </div>
     </div>
-    <hr class="m-t-0">
-
-    <form action="{{route('users.update', $user->id)}}" method="POST">
-      {{method_field('PUT')}}
-      {{csrf_field()}}
-      <div class="columns">
-        <div class="column">
-          <div class="field">
-            <label for="name" class="label">Name:</label>
-            <p class="control">
-              <input type="text" class="input" name="name" id="name" value="{{$user->name}}">
-            </p>
-          </div>
-
-          <div class="field">
-            <label for="email" class="label">Email:</label>
-            <p class="control">
-              <input type="text" class="input" name="email" id="email" value="{{$user->email}}">
-            </p>
-          </div>
-
-          <div class="field">
-            <label for="password" class="label">Password</label>
-            <b-radio-group v-model="password_options">
-              <div class="field">
-                <b-radio name="password_options" value="keep">Do Not Change Password</b-radio>
-              </div>
-              <div class="field">
-                <b-radio name="password_options" value="auto">Auto-Generate New Password</b-radio>
-              </div>
-              <div class="field">
-                <b-radio name="password_options" value="manual">Manually Set New Password</b-radio>
-                <p class="control">
-                  <input type="text" class="input" name="password" id="password" v-if="password_options == 'manual'" placeholder="Manually give a password to this user">
-                </p>
-              </div>
-            </b-radio-group>
-          </div>
-        </div> <!-- end of .column -->
-
-        <div class="column">
-          <label for="roles" class="label">Roles:</label>
-          <input type="hidden" name="roles" :value="rolesSelected" />
-
-            @foreach ($roles as $role)
-              <div class="field">
-                <b-checkbox v-model="rolesSelected" :native-value="{{$role->id}}">{{$role->display_name}}</b-checkbox>
-              </div>
-            @endforeach
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div>
         </div>
-      </div>
-      <div class="columns">
-        <div class="column">
-          <hr />
-          <button class="button is-primary is-pulled-right" style="width: 250px;">Edit User</button>
-        </div>
-      </div>
-    </form>
+    </div>
+</div>
 
-  </div> <!-- end of .flex-container -->
+<div class="content mt-3">
+  <div class="animated fadeIn">
+    <div class="row">
+
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    <strong>User Update Form</strong>
+                </div>
+                <div class="card-body card-block">
+                    <form action="{{route('users.update', $user->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal" id="create_book_form">
+                        {{ csrf_field() }}
+                        {{method_field('PUT')}}
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Name:</label></div>
+                            <div class="col-12 col-md-12">
+                                <input type="text" name="isbn" class="form-control" value="{{$user->name}}">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="email-input" class=" form-control-label">Email:</label></div>
+                            <div class="col-12 col-md-12">
+                                <input type="text" name="title" class="form-control" value="{{$user->email}}">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="password-input" class=" form-control-label">Password:</label></div>
+                            <div class="col-12 col-md-12">
+                                <div class="form-check">
+                                    <div class="radio">
+                                        <label for="radio1" class="form-check-label ">
+                                            <input type="radio" id="radio1" name="password_options" value="no_change" class="form-check-input">Do Not Change Password
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label for="radio1" class="form-check-label ">
+                                            <input type="radio" id="radio1" name="password_options" value="manual" class="form-check-input">Manually Set New Password
+										</label>
+										<input type="text" class="input" name="password" placeholder="Manually give a password to this user">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+							<div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Roles:</label></div>
+                            <div class="col-12 col-md-12">
+								<input type="hidden" name="roles" :value="rolesSelected" />
+								
+								<div class="form-check">
+
+									@foreach ($roles as $role)
+									<div class="radio">
+										<label for="radio1" class="form-check-label ">
+											<input type="radio" id="radio1" name="roles" value="{{$role->id}}" class="form-check-input">{{$role->display_name}}
+										</label>
+									</div>
+									@endforeach
+								</div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-sm" form="create_book_form">
+                        <i class="fa fa-dot-circle-o"></i> Submit
+                    </button>
+                    <button type="reset" class="btn btn-danger btn-sm">
+                        <i class="fa fa-ban"></i> Reset
+                    </button>
+                </div>
+            </div>
+        </div>  
+    
+    </div>
+  </div><!-- .animated -->
+</div><!-- .content -->
 @endsection
-
 
 @section('scripts')
   <script>

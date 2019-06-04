@@ -53,10 +53,6 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="{{ route('circulation.index') }}"> <i class="menu-icon ti-settings"></i>Tetapan Sirkulasi</a>
-                </li>
-
                 <h3 class="menu-title">Pengurusan</h3><!-- /.menu-title -->
 
                 

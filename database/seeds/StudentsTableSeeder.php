@@ -74,14 +74,260 @@ class StudentsTableSeeder extends Seeder
 
         DB::table('students')->insert([
             'name' => 'Amirul Ashraf Bin Rosman',
-            'ic_no' => rand(10000000000, 99999999999),
+            'ic_no' => '06'.rand(100000000, 999999999),
             'form' => '1'
         ]);
 
         DB::table('students')->insert([
             'name' => 'Ahmad Ashraf Bin Kamarulzaman',
-            'ic_no' => rand(10000000000, 99999999999),
+            'ic_no' => '05'.rand(100000000, 999999999),
             'form' => '2'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '05'.rand(100000000, 999999999),
+            'form' => '2'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '05'.rand(100000000, 999999999),
+            'form' => '2'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '05'.rand(100000000, 999999999),
+            'form' => '2'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '05'.rand(100000000, 999999999),
+            'form' => '2'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '05'.rand(100000000, 999999999),
+            'form' => '2'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '05'.rand(100000000, 999999999),
+            'form' => '2'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '05'.rand(100000000, 999999999),
+            'form' => '2'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '05'.rand(100000000, 999999999),
+            'form' => '2'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '05'.rand(100000000, 999999999),
+            'form' => '2'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '04'.rand(100000000, 999999999),
+            'form' => '3'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '04'.rand(100000000, 999999999),
+            'form' => '3'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '04'.rand(100000000, 999999999),
+            'form' => '3'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '04'.rand(100000000, 999999999),
+            'form' => '3'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '04'.rand(100000000, 999999999),
+            'form' => '3'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '08'.rand(100000000, 999999999),
+            'form' => '3'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '04'.rand(100000000, 999999999),
+            'form' => '2'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '04'.rand(100000000, 999999999),
+            'form' => '2'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '04'.rand(100000000, 999999999),
+            'form' => '3'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '04'.rand(100000000, 999999999),
+            'form' => '3'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '04'.rand(100000000, 999999999),
+            'form' => '3'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '04'.rand(100000000, 999999999),
+            'form' => '3'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '03'.rand(100000000, 999999999),
+            'form' => '4'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '03'.rand(100000000, 999999999),
+            'form' => '4'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '03'.rand(100000000, 999999999),
+            'form' => '4'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '03'.rand(100000000, 999999999),
+            'form' => '4'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '03'.rand(100000000, 999999999),
+            'form' => '4'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '03'.rand(100000000, 999999999),
+            'form' => '4'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '03'.rand(100000000, 999999999),
+            'form' => '4'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '03'.rand(100000000, 999999999),
+            'form' => '4'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '03'.rand(100000000, 999999999),
+            'form' => '4'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '03'.rand(100000000, 999999999),
+            'form' => '4'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '02'.rand(100000000, 999999999),
+            'form' => '5'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '02'.rand(100000000, 999999999),
+            'form' => '5'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '02'.rand(100000000, 999999999),
+            'form' => '5'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '02'.rand(100000000, 999999999),
+            'form' => '5'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '02'.rand(100000000, 999999999),
+            'form' => '5'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '02'.rand(100000000, 999999999),
+            'form' => '5'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '02'.rand(100000000, 999999999),
+            'form' => '5'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '02'.rand(100000000, 999999999),
+            'form' => '5'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '02'.rand(100000000, 999999999),
+            'form' => '5'
+        ]);
+
+        DB::table('students')->insert([
+            'name' => 'Ahmad Ashraf Bin Kamarulzaman',
+            'ic_no' => '02'.rand(100000000, 999999999),
+            'form' => '5'
         ]);
 
         //actory(App\Student::class, 100)->create();
