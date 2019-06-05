@@ -33,24 +33,70 @@
                     <form action="{{ route('books.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal" id="create_book_form">
                         {{ csrf_field() }}
                         <div class="row form-group">
-                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">ISBN</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="text-input" name="isbn" placeholder="" class="form-control"><small class="form-text text-muted">Nombor ISBN Buku</small></div>
+                            <div class="col col-md-3">
+                                <label for="text-input" class=" form-control-label">ISBN</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="text-input" name="isbn" placeholder="" class="form-control {{ $errors->has('isbn') ? ' is-invalid' : '' }}">
+                            
+                                @if ($errors->has('isbn'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('isbn') }}</strong>
+                                    </span>
+                                @endif
+                            
+                            </div>
                         </div>
                         <div class="row form-group">
-                            <div class="col col-md-3"><label for="email-input" class=" form-control-label">Tajuk</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="email-input" name="title" placeholder="" class="form-control"><small class="help-block form-text">Tajuk Buku</small></div>
+                            <div class="col col-md-3">
+                                <label for="email-input" class=" form-control-label">Tajuk</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="email-input" name="title" placeholder="" class="form-control {{ $errors->has('isbn') ? ' is-invalid' : '' }}">
+
+                                @if ($errors->has('title'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('title') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
                         </div>
                         <div class="row form-group">
-                            <div class="col col-md-3"><label for="password-input" class=" form-control-label">Pengarang</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="password-input" name="author" placeholder="" class="form-control"><small class="help-block form-text">Pengarang Buku</small></div>
+                            <div class="col col-md-3">
+                                <label for="password-input" class=" form-control-label">Pengarang</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="password-input" name="author" placeholder="" class="form-control {{ $errors->has('isbn') ? ' is-invalid' : '' }}">
+                                
+                                @if ($errors->has('author'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('author') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
                         </div>
                         <div class="row form-group">
-                            <div class="col col-md-3"><label for="password-input" class=" form-control-label">Penerbit</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="password-input" name="publisher" placeholder="" class="form-control"><small class="help-block form-text">Penerbit Buku</small></div>
+                            <div class="col col-md-3">
+                                <label for="password-input" class=" form-control-label">Penerbit</label></div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="password-input" name="publisher" placeholder="" class="form-control {{ $errors->has('isbn') ? ' is-invalid' : '' }}">
+                                
+                                @if ($errors->has('publisher'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('publisher') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
                         </div>
                         <div class="row form-group">
-                            <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Huraian</label></div>
-                            <div class="col-12 col-md-9"><textarea name="description" id="textarea-input" rows="9" placeholder="Content..." class="form-control"></textarea></div>
+                            <div class="col col-md-3">
+                                <label for="textarea-input" class=" form-control-label">Huraian</label></div>
+                            <div class="col-12 col-md-9">
+                                <textarea name="description" id="textarea-input" rows="9" placeholder="Content..." class="form-control"></textarea>
+                            </div>
                         </div>
                     </form>
                 </div>

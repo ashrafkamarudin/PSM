@@ -37,6 +37,14 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validateWith([
+            'isbn' => 'required|max:12',
+            'title' => 'required|max:255',
+            'publisher' => 'required|max:255',
+            'author' => 'required|max:100',
+            'description' => 'sometimes|max:255'
+        ]);
+
         //
         $book = new Book();
         $book->isbn = $request->isbn;
