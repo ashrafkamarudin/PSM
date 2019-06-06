@@ -1,6 +1,7 @@
 @extends('layouts.manage')
 
 @section('content')
+
 <div class="breadcrumbs">
     <div class="col-sm-4">
         <div class="page-header float-left">
@@ -30,19 +31,19 @@
                     <strong>User Update Form</strong>
                 </div>
                 <div class="card-body card-block">
-                    <form action="{{route('users.update', $user->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal" id="create_book_form">
+                    <form action="{{ route('users.update', $user->id) }}" method="post" enctype="multipart/form-data" class="form-horizontal" id="edit_user_form">
                         {{ csrf_field() }}
-                        {{method_field('PUT')}}
+                        {{ method_field('PUT') }}
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Name:</label></div>
                             <div class="col-12 col-md-12">
-                                <input type="text" name="isbn" class="form-control" value="{{$user->name}}">
+                                <input type="text" name="name" class="form-control" value="{{$user->name}}">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="email-input" class=" form-control-label">Email:</label></div>
                             <div class="col-12 col-md-12">
-                                <input type="text" name="title" class="form-control" value="{{$user->email}}">
+                                <input type="text" name="email" class="form-control" value="{{$user->email}}">
                             </div>
                         </div>
                         <div class="row form-group">
@@ -73,7 +74,7 @@
 									@foreach ($roles as $role)
 									<div class="radio">
 										<label for="radio1" class="form-check-label ">
-											<input type="radio" id="radio1" name="roles" value="{{$role->id}}" class="form-check-input">{{$role->display_name}}
+                                        <input type="radio" id="radio1" name="roles" value="{{$role->id}}" class="form-check-input" {{ $role->display_name == $user->roles->toArray()[0]['display_name'] ? 'checked' : '' }}>{{$role->display_name}}
 										</label>
 									</div>
 									@endforeach
@@ -84,7 +85,7 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary btn-sm" form="create_book_form">
+                    <button type="submit" class="btn btn-primary btn-sm" form="edit_user_form">
                         <i class="fa fa-dot-circle-o"></i> Submit
                     </button>
                     <button type="reset" class="btn btn-danger btn-sm">

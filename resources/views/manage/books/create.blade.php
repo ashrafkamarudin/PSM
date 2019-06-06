@@ -37,7 +37,7 @@
                                 <label for="text-input" class=" form-control-label">ISBN</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <input type="text" id="text-input" name="isbn" placeholder="" class="form-control {{ $errors->has('isbn') ? ' is-invalid' : '' }}">
+                                <input type="text" id="text-input" name="isbn" placeholder="" class="form-control {{ $errors->has('isbn') ? 'is-invalid' : '' }}">
                             
                                 @if ($errors->has('isbn'))
                                     <span class="invalid-feedback">

@@ -32,7 +32,7 @@
                 <div class="card-body card-block">
                     <form action="{{ route('books.update', $book->isbn) }}" method="post" enctype="multipart/form-data" class="form-horizontal" id="create_book_form">
                         {{ csrf_field() }}
-                        {{method_field('PUT')}}
+                        {{ method_field('PUT') }}
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">ISBN</label></div>
                             <div class="col-12 col-md-12">

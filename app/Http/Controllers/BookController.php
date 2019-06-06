@@ -84,6 +84,7 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         //
+        
         $book = Book::find($book)->first();
         return view("manage.books.edit")->withBook($book);
     }

@@ -101,6 +101,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+      
       $roles = Role::all();
       $user = User::where('id', $id)->with('roles')->first();
       return view("manage.users.edit")->withUser($user)->withRoles($roles);
@@ -113,16 +114,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-      $this->validateWith([
+      /*$this->validateWith([
         'name' => 'required|max:255',
-        'email' => 'required|email|unique:users,email,'.$id
-      ]);
+        'email' => 'required|email|unique:users'
+      ]);*/
 
-      $user = User::findOrFail($id);
+      //$user = User::findOrFail($request->id);
       $user->name = $request->name;
       $user->email = $request->email;
+
+      /*
       if ($request->password_options == 'auto') {
         $length = 10;
         $keyspace = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
@@ -134,10 +137,11 @@ class UserController extends Controller
         $user->password = Hash::make($str);
       } elseif ($request->password_options == 'manual') {
         $user->password = Hash::make($request->password);
-      }
+      }*/
       $user->save();
 
       $user->syncRoles(explode(',', $request->roles));
+
       //return redirect()->route('users.show', $id);
 
       // if () {
